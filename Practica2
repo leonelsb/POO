@@ -1,0 +1,236 @@
+import java.util.*;
+public class Practica2{
+	public static void main(String args[]){
+		int opc = 0;
+		boolean salir = false;
+		
+		
+		Estudiante al1 = new Estudiante("Marcos",1264526,"Matematicas","90","Aprovado");
+		Estudiante al2 = new Estudiante("Ruben",1267812,"Espanol","50","Reprovado");
+		Estudiante al3 = new Estudiante("Leonardo",01263264,"Historia","75","Aprovado");
+		Estudiante al4 = new Estudiante("Dario",1263345,"Geografia","80","Aprovado");
+		Estudiante al5 = new Estudiante("Leonel",1268999,"Algebra","90","Aprovado");
+		
+		while(!salir){
+			try{	
+				System.out.println("MENU");
+				System.out.println("Seleccione una opcion ");
+				System.out.println("1. Imprimir alumnos del 1 al 5 ");
+				System.out.println("2. Ingresar datos de los alumnos del 6 al 10 e Imprimir alumnos del 6 al 10 ");
+				System.out.println("3. Terminar ");
+				opc=CapturaEntrada.capturarEntero("opcion");
+				System.out.println();
+				switch(opc){
+					case 1:
+						System.out.println(al1.getNombre());
+						System.out.println(al1.getMatricula());
+						System.out.println(al1.getMateria());
+						System.out.println(al1.getCalificacion());
+						System.out.println(al1.getEstado());
+						System.out.println();
+						System.out.println(al2.getNombre());
+						System.out.println(al2.getMatricula());
+						System.out.println(al2.getMateria());
+						System.out.println(al2.getCalificacion());
+						System.out.println(al2.getEstado());
+						System.out.println();
+						System.out.println(al3.getNombre());
+						System.out.println(al3.getMatricula());
+						System.out.println(al3.getMateria());
+						System.out.println(al3.getCalificacion());
+						System.out.println(al3.getEstado());
+						System.out.println();
+						System.out.println(al4.getNombre());
+						System.out.println(al4.getMatricula());
+						System.out.println(al4.getMateria());
+						System.out.println(al4.getCalificacion());
+						System.out.println(al4.getEstado());
+						System.out.println();
+						System.out.println(al5.getNombre());
+						System.out.println(al5.getMatricula());
+						System.out.println(al5.getMateria());
+						System.out.println(al5.getCalificacion());
+						System.out.println(al5.getEstado());
+						System.out.println();
+						break;
+					
+					case 2:
+						Estudiante al6 = new Estudiante(CapturaEntrada.capturarCadena("Introduce nombre "), CapturaEntrada.capturarEntero("Introduce matricula "), CapturaEntrada.capturarCadena("Introduce materia "),CapturaEntrada.capturarCadena("Introduce promedio "),CapturaEntrada.capturarCadena("Introduce estado[aprovado / reprovado] "));
+						System.out.println();
+						Estudiante al7 = new Estudiante(CapturaEntrada.capturarCadena("Introduce nombre "), CapturaEntrada.capturarEntero("Introduce matricula "), CapturaEntrada.capturarCadena("Introduce materia "),CapturaEntrada.capturarCadena("Introduce promedio "),CapturaEntrada.capturarCadena("Introduce estado[aprovado / reprovado] "));
+						System.out.println();
+						Estudiante al8 = new Estudiante(CapturaEntrada.capturarCadena("Introduce nombre "), CapturaEntrada.capturarEntero("Introduce matricula "), CapturaEntrada.capturarCadena("Introduce materia "),CapturaEntrada.capturarCadena("Introduce promedio "),CapturaEntrada.capturarCadena("Introduce estado[aprovado / reprovado] "));
+						System.out.println();
+						Estudiante al9 = new Estudiante(CapturaEntrada.capturarCadena("Introduce nombre "), CapturaEntrada.capturarEntero("Introduce matricula "), CapturaEntrada.capturarCadena("Introduce materia "),CapturaEntrada.capturarCadena("Introduce promedio "),CapturaEntrada.capturarCadena("Introduce estado[aprovado / reprovado] "));
+						System.out.println();
+						Estudiante al10 = new Estudiante(CapturaEntrada.capturarCadena("Introduce nombre "), CapturaEntrada.capturarEntero("Introduce matricula "), CapturaEntrada.capturarCadena("Introduce materia "),CapturaEntrada.capturarCadena("Introduce promedio "),CapturaEntrada.capturarCadena("Introduce estado[aprovado / reprovado] "));
+						System.out.println();
+						System.out.println(al1.getNombre());
+						System.out.println(al1.getMatricula());
+						System.out.println(al1.getMateria());
+						System.out.println(al1.getCalificacion());
+						System.out.println(al1.getEstado());
+						System.out.println();
+						System.out.println(al2.getNombre());
+						System.out.println(al2.getMatricula());
+						System.out.println(al2.getMateria());
+						System.out.println(al2.getCalificacion());
+						System.out.println(al2.getEstado());
+						System.out.println();
+						System.out.println(al3.getNombre());
+						System.out.println(al3.getMatricula());
+						System.out.println(al3.getMateria());
+						System.out.println(al3.getCalificacion());
+						System.out.println(al3.getEstado());
+						System.out.println();
+						System.out.println(al4.getNombre());
+						System.out.println(al4.getMatricula());
+						System.out.println(al4.getMateria());
+						System.out.println(al4.getCalificacion());
+						System.out.println(al4.getEstado());
+						System.out.println();
+						System.out.println(al5.getNombre());
+						System.out.println(al5.getMatricula());
+						System.out.println(al5.getMateria());
+						System.out.println(al5.getCalificacion());
+						System.out.println(al5.getEstado());
+						System.out.println();
+						System.out.println(al6.getNombre());
+						System.out.println(al6.getMatricula());
+						System.out.println(al6.getMateria());
+						System.out.println(al6.getCalificacion());
+						System.out.println(al6.getEstado());
+						System.out.println();
+						System.out.println(al7.getNombre());
+						System.out.println(al7.getMatricula());
+						System.out.println(al7.getMateria());
+						System.out.println(al7.getCalificacion());
+						System.out.println(al7.getEstado());
+						System.out.println();
+						System.out.println(al8.getNombre());
+						System.out.println(al8.getMatricula());
+						System.out.println(al8.getMateria());
+						System.out.println(al8.getCalificacion());
+						System.out.println(al8.getEstado());
+						System.out.println();
+						System.out.println(al9.getNombre());
+						System.out.println(al9.getMatricula());
+						System.out.println(al9.getMateria());
+						System.out.println(al9.getCalificacion());
+						System.out.println(al9.getEstado());
+						System.out.println();
+						System.out.println(al10.getNombre());
+						System.out.println(al10.getMatricula());
+						System.out.println(al10.getMateria());
+						System.out.println(al10.getCalificacion());
+						System.out.println(al10.getEstado());
+						System.out.println();
+						break;
+		
+					case 3:
+					 salir = true;
+						break;
+						
+					default:
+					System.out.println("Seleccione un numero valido");
+					System.out.println();
+				}
+			}
+			catch(InputMismatchException e){
+				System.out.println("Debes escribir un numero");
+				System.out.println();
+			}
+		}
+	}
+}
+
+class Estudiante{
+	String nombre;
+	int matricula;
+	String materia;
+	String calificacion;
+	String estado;
+	
+		public Estudiante(String nombre, int matricula, String materia, String calificacion, String estado){
+		setNombre(nombre);
+		setMatricula(matricula);
+		setMateria(materia);
+		setCalificacion(calificacion);
+		setEstado(estado);
+	}
+	
+	//Los setters sirven para asignar un valor a un campo/atributo
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public void setMatricula(int matricula){
+		this.matricula = matricula;
+	}
+	
+	public void setMateria(String materia){
+		this.materia = materia;
+	}
+	
+	public void setCalificacion(String calificacion){
+		this.calificacion = calificacion;
+	}
+	
+	public void setEstado(String estado){
+		this.estado = estado;
+	}
+	
+	//Los getters sirven para recuperar el valor de un campo/atributo.
+	public String getNombre(){
+		return nombre;
+	}
+	
+	public int getMatricula(){
+		return matricula;
+	}
+	
+	public String getMateria(){
+		return materia;
+	}
+	
+	public String getCalificacion(){
+		return calificacion;
+	}
+	
+	public String getEstado(){
+		return estado;
+	}
+}
+
+class CapturaEntrada{
+
+    public static int capturarEntero(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextInt());
+    }
+
+    public static float capturarFlotante(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextFloat());
+    }
+
+    public static double capturarDoble(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextDouble());
+    }
+
+    public static String capturarCadena(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextLine());
+    }
+	
+	public static char capturarCaracter(String msg){
+		Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.next().charAt(0));
+	}
+}
