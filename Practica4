@@ -1,0 +1,263 @@
+import java.util.*;
+public class Practica4{
+    public static void main(String args[]){
+        
+		Cuenta usuario = Banco.Datos();
+		int pin;
+		char opc;
+		boolean salir = false;
+		int i = 0;
+		
+
+        System.out.println(" 1. Ingresar a cuenta bancaria ");
+        System.out.println(" 2. Crear cuenta bancaria");
+		System.out.println(" 3. Salir");
+        opc = CapturaEntrada.capturarCaracter("Seleccione una opcion ");
+        System.out.print("");
+			  
+		switch(opc){
+			case '1': do{
+						i++;
+						if(i == 1){
+						pin = CapturaEntrada.capturarEntero("Para consultar cuenta Ingrese su PIN ");
+							}else{
+								System.out.print("SU PIN ES INCORRECTO");
+								System.out.print("");
+								pin = CapturaEntrada.capturarEntero("Para consultar cuenta Ingrese su PIN ");
+							}	 
+						}while(Banco.VerificarPin(usuario,pin) == 0);
+								
+						if(pin == usuario.getPin()){
+							do{
+							System.out.print("\n");
+							System.out.print("MENU");
+							System.out.println(" 1. Consultar Saldo");
+							System.out.println(" 2. Retirar Saldo");
+							System.out.println(" 3. Abonar Saldo");
+							System.out.println(" 4. Salir");
+							opc = CapturaEntrada.capturarCaracter("Seleccione una opcion ");
+								
+						switch(opc){ 
+							case '1': 
+									Banco.ConsultaSaldo(usuario);
+									break;
+													
+							case '2': 
+									float cantidad = CapturaEntrada.capturarFlotante("Ingrese la cantidad que desea retirar ");
+						     		Banco.RetirarSaldo(usuario,cantidad); 
+									break;
+								
+							case '3': 
+									float cantidad1 = CapturaEntrada.capturarFlotante("Ingrese la cantidad que desea abonar ");
+									Banco.IngresaSaldo(usuario,cantidad1); 
+									break;
+								
+							case '4': 
+									System.exit(0); 
+									break;
+								}	
+				
+							
+							opc = CapturaEntrada.capturarCaracter("\nDesea hacer otra operacion? [Si/No]");
+				
+							}while(opc == 's' || opc == 'S');
+								
+						}
+										
+							break;
+										
+			case '2': System.out.println("\nIngrese los datos de la nueva cuenta");
+					  usuario = Banco.Datos();
+							  
+					  System.out.println(" 1. Consultar estado de la cuenta existente");
+					  System.out.println(" 2. Salir");
+					  opc = CapturaEntrada.capturarCaracter("Seleccione una opcion ");
+					  System.out.print("");
+						  
+						switch(opc){
+							case '1': do{
+										i++;
+										if(i == 1){
+										System.out.print("");
+										pin = CapturaEntrada.capturarEntero("Para consultar cuenta Ingrese su PIN ");
+												}else{
+													System.out.print("SU PIN ES INCORRECTO");
+													System.out.print("");
+													pin = CapturaEntrada.capturarEntero("Ingrese su PIN ");
+												}	 
+										}while(Banco.VerificarPin(usuario,pin) == 0);
+								
+										if(pin == usuario.getPin()){
+											
+										do{
+											System.out.print("");
+											System.out.print("MENU");
+											System.out.println(" 1. Consultar Saldo");
+											System.out.println(" 2. Retirar Saldo");
+											System.out.println(" 3. Abonar Saldo");
+											System.out.println(" 4. Salir");
+											opc = CapturaEntrada.capturarCaracter("Seleccione una opcion ");
+											System.out.print("");
+								
+										switch(opc){
+											case '1': Banco.ConsultaSaldo(usuario); 
+											break;
+													
+											case '2': 
+											  float cantidad = CapturaEntrada.capturarFlotante("Ingrese la cantidad que desea retirar ");
+											  Banco.RetirarSaldo(usuario,cantidad);
+											  break;
+								
+											case '3': 
+													  float cantidad1 = CapturaEntrada.capturarFlotante("Ingrese la cantidad que desea abonar ");
+													  Banco.IngresaSaldo(usuario,cantidad1);
+													  break;
+								
+											case '4': System.exit(0); 
+												break;
+											}	
+					
+											opc = CapturaEntrada.capturarCaracter("Desea hacer otra operacion? [Si/No]");
+						
+											}while(opc == 's' || opc == 'S');
+									
+										}
+											
+										break;
+										
+							case '2': System.exit(0); 
+									  break;
+						}
+						  		
+			case '3': System.exit(0); 
+						  break;	
+		}
+	}
+} 
+
+class Banco{
+    
+    public static Cuenta Datos(){
+
+        String nombre;
+        float saldo;
+        int pin;
+		
+        System.out.print("");
+        nombre = CapturaEntrada.capturarCadena("Ingrese su Nombre ");
+        System.out.print("");
+        saldo = CapturaEntrada.capturarFlotante("Ingrese su Saldo Inicial ");
+        System.out.print("");
+        pin = CapturaEntrada.capturarEntero("Ingrese su PIN ");
+
+        Cuenta usuario = new Cuenta(nombre,saldo,pin);
+
+        return usuario;
+    }
+
+    public static void ConsultaSaldo(Cuenta usuario){
+
+        System.out.println("El saldo de su cuenta es: "+usuario.getSaldo());
+     }
+
+     public static void RetirarSaldo(Cuenta usuario,float cantidad){
+
+        if(cantidad > usuario.getSaldo()){
+
+            System.out.println("Saldo Insuficiente");
+        } else{
+            
+            usuario.setSaldo(usuario.getSaldo() - cantidad);
+            System.out.println("Nuevo Saldo: " + usuario.getSaldo());
+        }
+    
+    }
+
+    public static void IngresaSaldo(Cuenta usuario, float cantidad){
+
+        usuario.setSaldo(usuario.getSaldo()+cantidad);
+        System.out.println("Nuevo Saldo: "+usuario.getSaldo());
+    }
+
+    public static int VerificarPin(Cuenta usuario, int pin){
+
+        if(pin == usuario.getPin()){
+
+            return 1;
+        
+        } else return 0;
+
+    }
+
+}
+
+class Cuenta extends Banco {
+
+    private String nombre;
+    private float saldo;
+    private int pin;
+
+    public Cuenta(String nombre, float saldo, int pin){
+        this.nombre = nombre;
+        this.saldo = saldo;
+        this.pin = pin;
+
+    }
+	
+    public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public void setSaldo(float saldo){
+		this.saldo = saldo;
+	}
+	
+	public void setPin(int pin){
+		this.pin = pin;
+	}
+	
+    public String getNombre(){
+		return nombre;
+	}
+    
+    public float getSaldo(){
+		return saldo;
+	}
+    
+    public int getPin(){
+		return pin;
+	}    
+}
+
+class CapturaEntrada{
+
+    public static int capturarEntero(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextInt());
+    }
+
+    public static float capturarFlotante(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextFloat());
+    }
+
+    public static double capturarDoble(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextDouble());
+    }
+
+    public static String capturarCadena(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextLine());
+    }
+	
+	public static char capturarCaracter(String msg){
+		Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.next().charAt(0));
+	}
+}
