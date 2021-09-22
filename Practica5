@@ -1,0 +1,235 @@
+import java.util.*;
+public class AngryBirds{
+	public static void main(String args[]){
+		int opc=0;
+		boolean salir = false;
+		Random ran = new Random();//genera numeros random
+		
+		
+		while(!salir){
+			try{
+				System.out.println("\n> ANGRY BIRDS <");
+				System.out.println();
+				System.out.println("MENU DE PERSONAJES");
+				System.out.println("1. RED ");
+				System.out.println("2. BOMB ");
+				System.out.println("3. MATILDA ");
+				System.out.println("4. Salir ");
+				opc=CapturaEntrada.capturarEntero("Seleccione un personaje");
+				System.out.println();
+				switch(opc){
+					case 1:
+						Rojo ave1[] = new Rojo[7];
+						ave1[0] = new Rojo("Red","","","","",0,0);
+						ave1[1] = new Rojo("","Rojo","","","",0,0);
+						ave1[2] = new Rojo("","","Mediano","","",0,0);
+						ave1[3] = new Rojo("","","","Aunque no tiene ningun poder en particular, es el pajaro mas respetado\n por ser el primero en enfrentarse a los cerdos y lanzarse contra ellos","",0,0);
+						ave1[4] = new Rojo("","","","","Masculino",0,0);
+						ave1[5] = new Rojo("","","","","",ran.nextInt(100),0);
+						ave1[6] = new Rojo("","","","","",0,30);
+						
+						System.out.println(">RED BIRD<");
+						System.out.println();
+						System.out.println("Nombre: " + ave1[0].getNombre());
+						System.out.println("Color: " + ave1[1].getColor());
+						System.out.println("Tamanio: " + ave1[2].getTamanio());
+						System.out.println("Poder: " + ave1[3].getPoder());
+						System.out.println("Genero: " + ave1[4].getSexo());
+						System.out.println("Alcance: " + ave1[5].getAlcance() + " Metros");
+						System.out.println("Danio: " + ave1[6].getDanio());
+						System.out.println();
+						break;
+					
+					case 2:
+						Negro ave2[] = new Negro[7];
+						ave2[0] = new Negro("Bomb","","","","",0,0);
+						ave2[1] = new Negro("","Negro","","","",0,0);
+						ave2[2] = new Negro("","","Grande","","",0,0);
+						ave2[3] = new Negro("","","","Al impactar contra una estructura o cerdo, Bomb comienza a iluminarse,\n y unos segundos despues, explota, destruyendo a todos los cerdos y bloques\n que se encuentren en su radio de alcance","",0,0);
+						ave2[4] = new Negro("","","","","Masculino",0,0);
+						ave2[5] = new Negro("","","","","",ran.nextInt(100),0);
+						ave2[6] = new Negro("","","","","",0,80);
+						
+						System.out.println(">PAJARO BOMBA<");
+						System.out.println();
+						System.out.println("Nombre: " + ave2[0].getNombre());
+						System.out.println("Color: " + ave2[1].getColor());
+						System.out.println("Tamanio: " + ave2[2].getTamanio());
+						System.out.println("Poder: " + ave2[3].getPoder());
+						System.out.println("Genero: " + ave2[4].getSexo());
+						System.out.println("Alcance: " + ave2[5].getAlcance() + " Metros");
+						System.out.println("Danio: " + ave2[6].getDanio());
+						System.out.println();
+						break;
+										
+					case 3:
+						Blanco ave3[] = new Blanco[7];
+						ave3[0] = new Blanco("Matilda","","","","",0,0);
+						ave3[1] = new Blanco("","Blanca","","","",0,0);
+						ave3[2] = new Blanco("","","Grande","","",0,0);
+						ave3[3] = new Blanco("","","","Al ser lanzada, Matilda puede dejar caer un proyectil explosivo con\n forma de huevo, el cual cae en linea recta hasta entrar en contacto con\n una estructura o cerdo, los cuales al tocarlos, explota, destruyendolos","",0,0);
+						ave3[4] = new Blanco("","","","","Femenino",0,0);
+						ave3[5] = new Blanco("","","","","",ran.nextInt(100),0);
+						ave3[6] = new Blanco("","","","","",0,60);
+						
+						System.out.println(">PAJARA BLANCA<");
+						System.out.println();
+						System.out.println("Nombre: " + ave3[0].getNombre());
+						System.out.println("Color: " + ave3[1].getColor());
+						System.out.println("Tamanio: " + ave3[2].getTamanio());
+						System.out.println("Poder: " + ave3[3].getPoder());
+						System.out.println("Genero: " + ave3[4].getSexo());
+						System.out.println("Alcance: " + ave3[5].getAlcance() + " Metros");
+						System.out.println("Danio: " + ave3[6].getDanio());
+						System.out.println();
+						break;
+						
+					case 4:
+						salir = true;
+						System.out.println("GRACIAS POR JUGAR ANGRY BIRDS ");
+						break;
+						
+					default:
+					System.out.println("Seleccione un numero valido");
+					System.out.println();
+				}
+			}
+			catch(InputMismatchException e){
+				System.out.println("Debes escribir un numero");
+				System.out.println();
+			}
+		
+		}
+	}
+}
+
+class Pajaro{
+	String nombre;
+	String color;
+	String tamanio;
+	String poder;
+	String sexo;
+	int alcance;
+	int danio;
+	
+	public Pajaro(String nombre, String color, String tamanio, String poder, String sexo, int alcance, int danio){
+		setNombre(nombre);
+		setColor(color);
+		setTamanio(tamanio);
+		setPoder(poder);
+		setSexo(sexo);
+		setAlcance(alcance);
+		setDanio(danio);
+	}
+	
+	//Setters
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public void setColor(String color){
+		this.color = color;
+	}
+	
+	public void setTamanio(String tamanio){
+		this.tamanio = tamanio;
+	}
+	
+	public void setPoder(String poder){
+		this.poder = poder;
+	}
+	
+	public void setSexo(String sexo){
+		this.sexo = sexo;
+	}
+	
+	public void setAlcance(int alcance){
+		this.alcance = alcance;
+	}
+	
+	public  void setDanio(int danio){
+		this.danio = danio;
+	}
+	
+	//Getters
+	public String getNombre(){
+		return nombre;
+	}
+	
+	public String getColor(){
+		return color;
+	}
+	
+	public String getTamanio(){
+		return tamanio;
+	}
+	
+	public String getPoder(){
+		return poder;
+	}
+	
+	public String getSexo(){
+		return sexo;
+	}
+	
+	public int getAlcance(){
+		return alcance;
+	}
+	
+	public int getDanio(){
+		return danio;
+	}
+}
+
+class Rojo extends Pajaro{
+	public Rojo(String nombre, String color, String tamanio, String poder, String sexo, int alcance, int danio){
+		super(nombre, color, tamanio, poder, sexo, alcance, danio);
+	}
+}
+
+class Negro extends Pajaro{
+	public Negro(String nombre, String color, String tamanio, String poder, String sexo, int alcance, int danio){
+		super(nombre, color, tamanio, poder, sexo, alcance, danio);
+	}
+}
+
+class Blanco extends Pajaro{
+	public Blanco(String nombre, String color, String tamanio, String poder, String sexo, int alcance, int danio){
+		super(nombre, color, tamanio, poder, sexo, alcance, danio);
+	}
+}
+
+class CapturaEntrada{
+
+    public static int capturarEntero(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextInt());
+    }
+
+    public static float capturarFlotante(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextFloat());
+    }
+
+    public static double capturarDoble(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextDouble());
+    }
+
+    public static String capturarCadena(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextLine());
+    }
+	
+	public static char capturarCaracter(String msg){
+		Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.next().charAt(0));
+	}
+	
+	
+}
