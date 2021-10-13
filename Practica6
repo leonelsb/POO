@@ -1,0 +1,404 @@
+import java.util.*;
+public class Baloncesto{
+	public static void main(String args[]){
+		Torneo tor = new Torneo();
+		int opc=0;
+		boolean salir = false;
+		
+		
+		
+		while(!salir){
+			try{
+				System.out.println("\n> BALONCESTO <");
+				System.out.println();
+				System.out.println("MENU");
+				System.out.println("1. DATOS DEL TORNEO  ");
+				System.out.println("2. DATOS 1ER EQUIPO");
+				System.out.println("3. DATOS 2DO EQUIPO");
+				System.out.println("4. DATOS 3RO EQUIPO");
+				System.out.println("5. DATOS 4TO EQUIPO");
+				System.out.println("6. DATOS 5TO EQUIPO");
+				System.out.println("7. SALIR");
+				opc=CapturaEntrada.capturarEntero("Seleccione una opcion");
+				System.out.println();
+		
+				switch(opc){
+					case 1:
+						
+						System.out.println("\n>TORNEO<");
+						tor.setTorneo("NBA", "USA", 5, 4, 6);
+						System.out.println("Torneo: " + tor.nomTorneo);
+						System.out.println("Region: " + tor.region);
+						System.out.println("Numero de equipos: " + tor.numEquipos);
+						System.out.println("Partidos jugados: " + tor.pJugados);
+						System.out.println("Partidos pendientes: " + tor.pPendientes);
+						break;
+					
+					case 2:
+						System.out.println("\n>EQUIPO 1<");
+						tor.squad1.setEquipo("LAKERS", "1ra", "Frank Vogel", "100", "85", "15");
+						System.out.println("Nobre de Equipo: " + tor.squad1.nomEquipo);
+						System.out.println("Division: " + tor.squad1.division);
+						
+						System.out.println("\n>JUGADORES<");
+						tor.squad1.p1.setJugador(6, "LeBron James", 27, "Alero", "2.03m");
+						tor.squad1.p2.setJugador(4, "Rajon Rondo", 10, "Base", "1.85m");
+						tor.squad1.p3.setJugador(2, "Wayne Ellington", 8, "Escolta", "1.91m");
+						tor.squad1.p4.setJugador(11, "Malik", 9, "Alero", "2.03m");
+						tor.squad1.p5.setJugador(1, "Trevor Ariza", 10, "Alero", "2.03m");
+						tor.squad1.p6.setJugador(9, "Kent Bazemore", 8, "Alero", "1.93m");
+						tor.squad1.p7.setJugador(3, "Anthony Davis", 23, "Ala", "2.08m");
+						tor.squad1.p8.setJugador(7, "Carmelo Anthony", 23, "Ala", "2.03m");
+						tor.squad1.p9.setJugador(21, "Cameron", 10, "Ala", "2.03m");
+						tor.squad1.p10.setJugador(10, "DeAndre Jordan", 9, "Ala", "2.11m");
+						System.out.println("Numero: " + tor.squad1.p1.numJu);
+						System.out.println("Nombre: " + tor.squad1.p1.nombre);
+						System.out.println("Numero: " + tor.squad1.p2.numJu);
+						System.out.println("Nombre: " + tor.squad1.p2.nombre);
+						System.out.println("Numero: " + tor.squad1.p3.numJu);
+						System.out.println("Nombre: " + tor.squad1.p3.nombre);
+						System.out.println("Numero: " + tor.squad1.p4.numJu);
+						System.out.println("Nombre: " + tor.squad1.p4.nombre);
+						System.out.println("Numero: " + tor.squad1.p5.numJu);
+						System.out.println("Nombre: " + tor.squad1.p5.nombre);
+						System.out.println("Numero: " + tor.squad1.p6.numJu);
+						System.out.println("Nombre: " + tor.squad1.p6.nombre);
+						System.out.println("Numero: " + tor.squad1.p7.numJu);
+						System.out.println("Nombre: " + tor.squad1.p7.nombre);
+						System.out.println("Numero: " + tor.squad1.p8.numJu);
+						System.out.println("Nombre: " + tor.squad1.p8.nombre);
+						System.out.println("Numero: " + tor.squad1.p9.numJu);
+						System.out.println("Nombre: " + tor.squad1.p9.nombre);
+						System.out.println("Numero: " + tor.squad1.p10.numJu);
+						System.out.println("Nombre: " + tor.squad1.p10.nombre);
+						System.out.println("\nPuntos totales del equipo");
+						System.out.println(tor.squad1.p1.puntos + tor.squad1.p2.puntos + tor.squad1.p3.puntos+tor.squad1.p4.puntos+tor.squad1.p5.puntos+tor.squad1.p6.puntos+tor.squad1.p7.puntos+tor.squad1.p8.puntos+tor.squad1.p9.puntos+tor.squad1.p10.puntos);
+						break;
+										
+					case 3:
+						System.out.println("\n>EQUIPO 2<");
+						tor.squad2.setEquipo("CHICAGO BULLS", "1ra", "Billy Donovan", "100", "21", "79");
+						System.out.println("Nobre de Equipo: " + tor.squad2.nomEquipo);
+						System.out.println("Division: " + tor.squad2.division);
+						
+						System.out.println("\n>JUGADORES<");
+						tor.squad2.p11.setJugador(2, "Lonzo Ball", 11, "Base", "1.98m");
+						tor.squad2.p12.setJugador(6, "Alex Caruso", 6, "Base", "1.96m");
+						tor.squad2.p13.setJugador(3, "Devon Dotson", 2, "Base", "1.88m");
+						tor.squad2.p14.setJugador(8, "Zach LaVine", 19, "Escolta", "1.98m");
+						tor.squad2.p15.setJugador(0, "Coby White", 14, "Escolta", "1.93m");
+						tor.squad2.p16.setJugador(11, "DeMar DeRozan", 20, "Alero", "1.98m");
+						tor.squad2.p17.setJugador(7, "Troy Brown", 7, "Alero", "1.98m");
+						tor.squad2.p18.setJugador(22, "Alize Johnson", 3, "Alero", "2.01m");
+						tor.squad2.p19.setJugador(14, "Stanley Johnson", 6, "Ala", "1.98m");
+						tor.squad2.p20.setJugador(25, "Tyler Cook", 4, "Ala", "2.03m");
+						System.out.println("Numero: " + tor.squad2.p11.numJu);
+						System.out.println("Nombre: " + tor.squad2.p11.nombre);
+						System.out.println("Numero: " + tor.squad2.p12.numJu);
+						System.out.println("Nombre: " + tor.squad2.p12.nombre);
+						System.out.println("Numero: " + tor.squad2.p13.numJu);
+						System.out.println("Nombre: " + tor.squad2.p13.nombre);
+						System.out.println("Numero: " + tor.squad2.p14.numJu);
+						System.out.println("Nombre: " + tor.squad2.p14.nombre);
+						System.out.println("Numero: " + tor.squad2.p15.numJu);
+						System.out.println("Nombre: " + tor.squad2.p15.nombre);
+						System.out.println("Numero: " + tor.squad2.p16.numJu);
+						System.out.println("Nombre: " + tor.squad2.p16.nombre);
+						System.out.println("Numero: " + tor.squad2.p17.numJu);
+						System.out.println("Nombre: " + tor.squad2.p17.nombre);
+						System.out.println("Numero: " + tor.squad2.p18.numJu);
+						System.out.println("Nombre: " + tor.squad2.p18.nombre);
+						System.out.println("Numero: " + tor.squad2.p19.numJu);
+						System.out.println("Nombre: " + tor.squad2.p19.nombre);
+						System.out.println("Numero: " + tor.squad2.p20.numJu);
+						System.out.println("Nombre: " + tor.squad2.p20.nombre);
+						System.out.println("\nPuntos totales del equipo");
+						System.out.println(tor.squad2.p11.puntos+tor.squad2.p12.puntos+tor.squad2.p13.puntos+tor.squad2.p14.puntos+tor.squad2.p15.puntos+tor.squad2.p16.puntos+tor.squad2.p17.puntos+tor.squad2.p18.puntos+tor.squad2.p19.puntos+tor.squad2.p20.puntos);
+						break;
+						
+					case 4:
+						System.out.println("\n>EQUIPO 3<");
+						tor.squad3.setEquipo("MIAMI HEAT", "1ra", "Erik Spoelstra", "100", "23", "77");
+						System.out.println("Nobre de Equipo: " + tor.squad3.nomEquipo);
+						System.out.println("Division: " + tor.squad3.division);
+						
+						System.out.println("\n>JUGADORES<");
+						tor.squad3.p21.setJugador(7, "Kyle Lowry", 15, "Base", "1.83m");
+						tor.squad3.p22.setJugador(14, "Tyler Herro", 2, "Base", "1.96m");
+						tor.squad3.p23.setJugador(2, "Gabe Vincent", 2,"Base", "1.91m");
+						tor.squad3.p24.setJugador(4, "Victor Oladipo", 8, "Escolta", "1.93m");
+						tor.squad3.p25.setJugador(55, "Duncan Robinson", 3, "Escolta", "2.01m");
+						tor.squad3.p26.setJugador(31, "Max Strus", 2, "Escolta", "1.98m");
+						tor.squad3.p27.setJugador(22, "Jimmy Butler", 10, "Alero", "2.01m");
+						tor.squad3.p28.setJugador(16, "Caleb Martin", 2, "Alero", "1.96m");
+						tor.squad3.p29.setJugador(17, "P.J Tucker", 10, "Ala", "1.96m");
+						tor.squad3.p30.setJugador(8, "Markieff Morris", 10, "Ala", "2.03m");
+						System.out.println("Numero: " + tor.squad3.p21.numJu);
+						System.out.println("Nombre: " + tor.squad3.p21.nombre);
+						System.out.println("Numero: " + tor.squad3.p22.numJu);
+						System.out.println("Nombre: " + tor.squad3.p22.nombre);
+						System.out.println("Numero: " + tor.squad3.p23.numJu);
+						System.out.println("Nombre: " + tor.squad3.p23.nombre);
+						System.out.println("Numero: " + tor.squad3.p24.numJu);
+						System.out.println("Nombre: " + tor.squad3.p24.nombre);
+						System.out.println("Numero: " + tor.squad3.p25.numJu);
+						System.out.println("Nombre: " + tor.squad3.p25.nombre);
+						System.out.println("Numero: " + tor.squad3.p26.numJu);
+						System.out.println("Nombre: " + tor.squad3.p26.nombre);
+						System.out.println("Numero: " + tor.squad3.p27.numJu);
+						System.out.println("Nombre: " + tor.squad3.p27.nombre);
+						System.out.println("Numero: " + tor.squad3.p28.numJu);
+						System.out.println("Nombre: " + tor.squad3.p28.nombre);
+						System.out.println("Numero: " + tor.squad3.p29.numJu);
+						System.out.println("Nombre: " + tor.squad3.p29.nombre);
+						System.out.println("Numero: " + tor.squad3.p30.numJu);
+						System.out.println("Nombre: " + tor.squad3.p30.nombre);
+						System.out.println("\nPuntos totales del equipo");
+						System.out.println(tor.squad3.p21.puntos+tor.squad3.p22.puntos+tor.squad3.p23.puntos+tor.squad3.p24.puntos+tor.squad3.p25.puntos+tor.squad3.p26.puntos+tor.squad3.p27.puntos+tor.squad3.p28.puntos+tor.squad3.p29.puntos+tor.squad3.p30.puntos);
+						break;
+						
+					case 5:
+						System.out.println("\n>EQUIPO 4<");
+						tor.squad4.setEquipo("GOLDEN STATE WARRIORS", "1ra", "Steve Kerr", "100", "24", "76");
+						System.out.println("Nobre de Equipo: " + tor.squad4.nomEquipo);
+						System.out.println("Division: " + tor.squad4.division);
+						
+						System.out.println("\n>JUGADORES<");
+						tor.squad4.p31.setJugador(30, "Stephen Curry", 12, "Base", "1.91m");						tor.squad4.p32.setJugador(4, "Rajon Rondo", 10, "Base", "1.85");
+						tor.squad4.p33.setJugador(3, "Jordan Poole", 2, "Base", "1.93m");
+						tor.squad4.p34.setJugador(2, "Chris Chiozza", 3, "Base", "1.80m");
+						tor.squad4.p35.setJugador(15, "Mychal Mulder", 2, "Base", "1.93m");
+						tor.squad4.p36.setJugador(10, "Avery Brandley", 11, "Base", "1.88m");
+						tor.squad4.p37.setJugador(1, "Damion Lee", 4, "Escoltas", "1.96m");
+						tor.squad4.p38.setJugador(0, "Gary Payton", 23, "Escolta", "1.91m");
+						tor.squad4.p39.setJugador(95, "Juan Toscano", 2, "Ala", "1.98m");
+						tor.squad4.p40.setJugador(6, "Jordan Bell", 4, "Ala", "2.03m");
+						System.out.println("Numero: " + tor.squad4.p31.numJu);
+						System.out.println("Nombre: " + tor.squad4.p31.nombre);
+						System.out.println("Numero: " + tor.squad4.p32.numJu);
+						System.out.println("Nombre: " + tor.squad4.p32.nombre);
+						System.out.println("Numero: " + tor.squad4.p33.numJu);
+						System.out.println("Nombre: " + tor.squad4.p33.nombre);
+						System.out.println("Numero: " + tor.squad4.p34.numJu);
+						System.out.println("Nombre: " + tor.squad4.p34.nombre);
+						System.out.println("Numero: " + tor.squad4.p35.numJu);
+						System.out.println("Nombre: " + tor.squad4.p35.nombre);
+						System.out.println("Numero: " + tor.squad4.p36.numJu);
+						System.out.println("Nombre: " + tor.squad4.p36.nombre);
+						System.out.println("Numero: " + tor.squad4.p37.numJu);
+						System.out.println("Nombre: " + tor.squad4.p37.nombre);
+						System.out.println("Numero: " + tor.squad4.p38.numJu);
+						System.out.println("Nombre: " + tor.squad4.p38.nombre);
+						System.out.println("Numero: " + tor.squad4.p39.numJu);
+						System.out.println("Nombre: " + tor.squad4.p39.nombre);
+						System.out.println("Numero: " + tor.squad4.p40.numJu);
+						System.out.println("Nombre: " + tor.squad4.p40.nombre);
+						System.out.println("\nPuntos totales del equipo");
+						System.out.println(tor.squad4.p31.puntos+tor.squad4.p32.puntos+tor.squad4.p33.puntos+tor.squad4.p34.puntos+tor.squad4.p35.puntos+tor.squad4.p36.puntos+tor.squad4.p37.puntos+tor.squad4.p38.puntos+tor.squad4.p39.puntos+tor.squad4.p40.puntos);
+						break;
+						
+					case 6:
+						System.out.println("\n>EQUIPO 5<");
+						tor.squad5.setEquipo("BOSTON CELTICS", "1ra", "Ime Sunday", "100", "60", "40");
+						System.out.println("Nobre de Equipo: " + tor.squad5.nomEquipo);
+						System.out.println("Division: " + tor.squad5.division);
+						
+						System.out.println("\n>JUGADORES<");
+						tor.squad5.p41.setJugador(71, "Dennis Schroder", 8, "Base", "1.85m");
+						tor.squad5.p42.setJugador(11, "Payton Pritchard", 1, "Base", "1.88m");
+						tor.squad5.p43.setJugador(51, "Ryan Arcidiacono", 4, "Base", "1.91m");
+						tor.squad5.p44.setJugador(36, "Marcus Smart", 7, "Escolta", "1.91m");
+						tor.squad5.p45.setJugador(8, "Josh Richardson", 6, "Escolta", "1.96m");
+						tor.squad5.p46.setJugador(9, "Romeo Langford", 2, "Escolta", "1.93m");
+						tor.squad5.p47.setJugador(7, "Jaylen Brown", 5, "Alero", "1.98m");
+						tor.squad5.p48.setJugador(26, "Aaron Nesmith", 1, "Alero", "1.98m");
+						tor.squad5.p49.setJugador(0, "Jayson Tatum", 4, "Ala", "2.03m");
+						tor.squad5.p50.setJugador(40, "Juwan Morgan", 2, "Ala", "2.03m");
+						System.out.println("Numero: " + tor.squad5.p41.numJu);
+						System.out.println("Nombre: " + tor.squad5.p41.nombre);
+						System.out.println("Numero: " + tor.squad5.p42.numJu);
+						System.out.println("Nombre: " + tor.squad5.p42.nombre);
+						System.out.println("Numero: " + tor.squad5.p43.numJu);
+						System.out.println("Nombre: " + tor.squad5.p43.nombre);
+						System.out.println("Numero: " + tor.squad5.p44.numJu);
+						System.out.println("Nombre: " + tor.squad5.p44.nombre);
+						System.out.println("Numero: " + tor.squad5.p45.numJu);
+						System.out.println("Nombre: " + tor.squad5.p45.nombre);
+						System.out.println("Numero: " + tor.squad5.p46.numJu);
+						System.out.println("Nombre: " + tor.squad5.p46.nombre);
+						System.out.println("Numero: " + tor.squad5.p47.numJu);
+						System.out.println("Nombre: " + tor.squad5.p47.nombre);
+						System.out.println("Numero: " + tor.squad5.p48.numJu);
+						System.out.println("Nombre: " + tor.squad5.p48.nombre);
+						System.out.println("Numero: " + tor.squad5.p49.numJu);
+						System.out.println("Nombre: " + tor.squad5.p49.nombre);
+						System.out.println("Numero: " + tor.squad5.p50.numJu);
+						System.out.println("Nombre: " + tor.squad5.p50.nombre);
+						System.out.println("\nPuntos totales del equipo");
+						System.out.println(tor.squad5.p41.puntos+tor.squad5.p42.puntos+tor.squad5.p43.puntos+tor.squad5.p44.puntos+tor.squad5.p45.puntos+tor.squad5.p46.puntos+tor.squad5.p47.puntos+tor.squad5.p48.puntos+tor.squad5.p49.puntos+tor.squad5.p50.puntos);
+						break;
+						
+					case 7:
+						salir = true;
+						System.out.println("DISFRUTE LA TEMPORADA.");
+						break;
+						
+					default:
+					System.out.println("Seleccione un numero valido");
+					System.out.println();
+				}
+			}
+			catch(InputMismatchException e){
+				System.out.println("Debes escribir un numero");
+				System.out.println();
+			}
+		
+		}
+		
+		
+		
+		
+	}
+}//fin clase baloncesto
+
+class Torneo{
+	String nomTorneo;
+	String region;
+	int numEquipos;
+	int pJugados;
+	int pPendientes;
+	
+	Equipo squad1 = new Equipo();
+	Equipo squad2 = new Equipo();
+	Equipo squad3 = new Equipo();
+	Equipo squad4 = new Equipo();
+	Equipo squad5 = new Equipo();
+	
+	void setTorneo(String nomTorneo, String region, int numEquipos, int pJugados, int pPendientes){
+		this.nomTorneo = nomTorneo;
+		this.region = region;
+		this.numEquipos = numEquipos;
+		this.pJugados = pJugados;
+		this.pPendientes = pPendientes;
+	}
+	
+}//fin clase torneo 
+
+class Equipo{
+	String nomEquipo;
+	String division;
+	String nomEntrenador;
+	String torneoPar;
+	String torneoG;
+	String torneoP;
+	Jugador p1 = new Jugador();
+	Jugador p2 = new Jugador();
+	Jugador p3 = new Jugador();
+	Jugador p4 = new Jugador();
+	Jugador p5 = new Jugador();
+	Jugador p6 = new Jugador();
+	Jugador p7 = new Jugador();
+	Jugador p8 = new Jugador();
+	Jugador p9 = new Jugador();
+	Jugador p10 = new Jugador();
+	Jugador p11 = new Jugador();
+	Jugador p12 = new Jugador();
+	Jugador p13 = new Jugador();
+	Jugador p14 = new Jugador();
+	Jugador p15 = new Jugador();
+	Jugador p16 = new Jugador();
+	Jugador p17 = new Jugador();
+	Jugador p18 = new Jugador();
+	Jugador p19 = new Jugador();
+	Jugador p20 = new Jugador();
+	Jugador p21 = new Jugador();
+	Jugador p22 = new Jugador();
+	Jugador p23 = new Jugador();
+	Jugador p24 = new Jugador();
+	Jugador p25 = new Jugador();
+	Jugador p26 = new Jugador();
+	Jugador p27 = new Jugador();
+	Jugador p28 = new Jugador();
+	Jugador p29 = new Jugador();
+	Jugador p30 = new Jugador();
+	Jugador p31 = new Jugador();
+	Jugador p32 = new Jugador();
+	Jugador p33 = new Jugador();
+	Jugador p34 = new Jugador();
+	Jugador p35 = new Jugador();
+	Jugador p36 = new Jugador();
+	Jugador p37 = new Jugador();
+	Jugador p38 = new Jugador();
+	Jugador p39 = new Jugador();
+	Jugador p40 = new Jugador();
+	Jugador p41 = new Jugador();
+	Jugador p42 = new Jugador();
+	Jugador p43 = new Jugador();
+	Jugador p44 = new Jugador();
+	Jugador p45 = new Jugador();
+	Jugador p46 = new Jugador();
+	Jugador p47 = new Jugador();
+	Jugador p48 = new Jugador();
+	Jugador p49 = new Jugador();
+	Jugador p50 = new Jugador();
+	
+	void setEquipo(String nomEquipo, String division, String nomEntrenador, String torneoPar, String torneoG, String torneoP){
+		this.nomEquipo = nomEquipo;
+		this.division = division;
+		this.nomEntrenador = nomEntrenador;
+		this.torneoPar = torneoPar;
+		this.torneoG = torneoG;
+		this.torneoP = torneoP;
+	}
+}//fin clase equipo
+
+class Jugador{
+	int numJu;
+	String nombre;
+	int puntos;
+	String posicion;
+	String estatura;
+	
+	void setJugador(int numJu, String nombre, int puntos, String posicion, String estatura){
+		this.numJu = numJu;
+		this.nombre = nombre;
+		this.puntos = puntos;
+		this. posicion = posicion;
+		this. estatura = estatura;
+	}
+}//fin clase jugador
+
+class CapturaEntrada{
+
+    public static int capturarEntero(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextInt());
+    }
+
+    public static float capturarFlotante(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextFloat());
+    }
+
+    public static double capturarDoble(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextDouble());
+    }
+
+    public static String capturarCadena(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextLine());
+    }
+	
+	public static char capturarCaracter(String msg){
+		Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.next().charAt(0));
+	}
+	
+	
+}
