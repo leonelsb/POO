@@ -1,0 +1,271 @@
+import java.util.*;
+public class Chef{
+	public static void main(String args[]){
+		RobotChef rob = new RobotChef("Magnum Opus");
+		Robotcito1 rob1 = new Robotcito1("Chefcito");
+		Robotcito2 rob2 = new Robotcito2("Robotcito");
+		Random ran = new Random();//genera numeros random
+		int opc=0;
+		boolean salir = false;
+		boolean salir1 = false;
+		boolean salir2 = false;
+		boolean salir3 = false;
+		
+		while(!salir){
+			try{
+				System.out.println("\n> ROBOTS CHEFS <");
+				System.out.println();
+				System.out.println("MENU DE ROBOTS");
+				System.out.println("1. ROBOT CHEF PRINCIPAL ");
+				System.out.println("2. ROBOT CHEF AYUDANTE 1 ");
+				System.out.println("3. ROBOT CHEF AYUDANTE 2 ");
+				System.out.println("4. SALIR ");
+				opc=CapturaEntrada.capturarEntero("\nSeleccione una opcion");
+				System.out.println();
+		
+				switch(opc){
+					case 1:
+						System.out.println("> MAGNUM OPUS <");
+						rob.info();
+						System.out.println("\nHABILIDAD");
+						rob.preparar();
+						rob.cocinar();
+						rob.servir();
+						System.out.println("\nNivel de bateria:" + ran.nextInt(100) + "%");
+						while(!salir1){
+							try{
+								System.out.println("\n> OPCIONES <");
+								System.out.println("1. COCINAR ");
+								System.out.println("2. REGRESAR ");
+								opc=CapturaEntrada.capturarEntero("\nSeleccione una opcion");
+								System.out.println();
+						
+								switch(opc){
+									case 1:
+										System.out.println("\n " + rob.getNombre() + " esta preparando los ingredientes con ayuda de " + rob1.getNombre() + "...  ");                  
+										System.out.println("\n " + rob.getNombre() + " esta cocinando con ayuda de " + rob2.getNombre() + "... ");                       
+										System.out.println("\n " + rob.getNombre() + " esta sirviendo el platillo... ");   
+										System.out.println("\n  El platillo esta listo!  ");
+										break;
+										
+									case 2:
+										salir1 = true;
+										break;
+										
+									default:
+									System.out.println("Seleccione un numero valido");
+									System.out.println();
+								}
+							}
+							catch(InputMismatchException e){
+								System.out.println("Debes escribir un numero");
+								System.out.println();
+							}
+						}
+					break;
+					
+					case 2:
+						System.out.println("> CHEFCITO <");
+						rob1.info();
+						System.out.println("\nHABILIDAD");
+						rob.preparar();
+						System.out.println("\nNivel de bateria:" + ran.nextInt(100) + "%");
+						while(!salir2){
+							try{
+								System.out.println("\n> OPCIONES <");
+								System.out.println("1. COCINAR ");
+								System.out.println("2. REGRESAR ");
+								opc=CapturaEntrada.capturarEntero("\nSeleccione una opcion");
+								System.out.println();
+						
+								switch(opc){
+									case 1:
+										System.out.println("\n " + rob1.getNombre() + " esta preparando los ingredientes...");                
+										System.out.println("\n " + rob1.getNombre() + " solo puede picar!!");                      
+										System.out.println("\n El platillo aun no esta terminado!");
+										System.out.println("\n " + rob1.getNombre() + " necesita ayuda!");         
+										break;
+										
+									case 2:
+										salir2 = true;
+										break;
+										
+									default:
+									System.out.println("Seleccione un numero valido");
+									System.out.println();
+								}
+							}
+							catch(InputMismatchException e){
+								System.out.println("Debes escribir un numero");
+								System.out.println();
+							}
+						}
+					break;
+					
+										
+					case 3:
+						System.out.println("> ROBOTCITO <");
+						rob2.info();
+						System.out.println("\nHABILIDAD");
+						rob2.cocinar();
+						System.out.println("\nNivel de bateria:" + ran.nextInt(100) + "%");
+						while(!salir3){
+							try{
+								System.out.println("\n> OPCIONES <");
+								System.out.println("1. COCINAR ");
+								System.out.println("2. REGRESAR ");
+								opc=CapturaEntrada.capturarEntero("\nSeleccione una opcion");
+								System.out.println();
+						
+								switch(opc){
+									case 1:
+										System.out.println("\n Los ingredientes aun no estan preparados...  ");
+										System.out.println("\n " + rob2.getNombre() + " no puede preparar los ingredientes...  ");   
+										System.out.println("\n " + rob2.getNombre() + " solo sabe cocinar!");  
+										System.out.println("\n El platillo aun no esta terminado!");  
+										System.out.println("\n " + rob2.getNombre() + " necesita ayuda!");
+										break;
+										
+									case 2:
+										salir3 = true;
+										break;
+										
+									default:
+									System.out.println("Seleccione un numero valido");
+									System.out.println();
+								}
+							}
+							catch(InputMismatchException e){
+								System.out.println("Debes escribir un numero");
+								System.out.println();
+							}
+						}
+					break;
+					
+						
+					case 4:
+						salir = true;
+						System.out.println("DISFRUTE SU COMIDA! ");
+					break;
+
+						
+					default:
+					System.out.println("Seleccione un numero valido");
+					System.out.println();
+				}
+			}
+			catch(InputMismatchException e){
+				System.out.println("Debes escribir un numero");
+				System.out.println();
+			}
+		
+		}
+	}
+}
+
+interface Interfaz{
+	public void preparar();  
+	
+	public void cocinar();  
+
+	public void servir();
+	
+	public void info();
+}
+
+class RobotChef implements Interfaz{
+	String nombre;
+	
+	public RobotChef(String nombre){
+		setNombre(nombre);
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public String getNombre(){
+		return nombre;
+	}
+	
+	public void info(){
+		System.out.println("\nDESCRIPCION");
+		System.out.println("Magnum Opus es un Robot Chef con la capacidad de cortar, picar verduras y carne,\ncocinar un buen guiso con los ingredientes y servirlo en un tazon. ");
+	}
+	
+	public void preparar(){ 
+	    System.out.println("\n- Preparar ingredientes");
+	}
+ 	
+	public void cocinar(){   
+	    System.out.println("\n- Cocinar");	
+	}
+
+	public void servir(){  
+	    System.out.println("\n- Servir platillo");	
+	}
+
+}
+
+class Robotcito1 extends RobotChef implements Interfaz{
+	public Robotcito1(String nombre){
+		super(nombre);
+	}
+	
+	public void info(){
+		System.out.println("\nDESCRIPCION");
+		System.out.println("Chefcito es un Robot Chef ayudante con 2 cuchillos para las manos,\nmuy eficiente para preparar la carne y las verduras, pero completamente inutil para cocinarlo o servirlo");
+	}
+	
+	public void preparar(){
+	    System.out.println("\n- Picar y preparar ingredientes");
+	}
+}
+
+class Robotcito2 extends RobotChef implements Interfaz{
+	public Robotcito2(String nombre){
+		super(nombre);
+	}
+	
+	public void info(){
+		System.out.println("\nDESCRIPCION");
+		System.out.println("Robotcito es un Robot Chef ayudante con manos calientes,\nincreible para cocinar a la temperatura adecuada pero terrible con cuchillos o para servir.");
+	}
+	
+	public void cocinar(){
+	    System.out.println("\n- Cocinar");	
+	}
+}
+
+class CapturaEntrada{
+
+    public static int capturarEntero(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextInt());
+    }
+
+    public static float capturarFlotante(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextFloat());
+    }
+
+    public static double capturarDoble(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextDouble());
+    }
+
+    public static String capturarCadena(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextLine());
+    }
+	
+	public static char capturarCaracter(String msg){
+		Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.next().charAt(0));
+	}
+}
