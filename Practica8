@@ -1,0 +1,228 @@
+import java.util.*;
+public class Zoo{
+    public static void main(String args[]){
+        
+		char opc;
+		String nom;
+        int tamanio=1;
+        int aux = 0;
+
+        Veterinaria animal[] = new Veterinaria[10];
+		
+		animal[0] = new Leon("Canela", 7);
+		animal[1] = new Elefante("Felix", 5);
+		
+		System.out.print("\n--Bienvenido al ZOOLOGICO--");
+        do{
+			
+			System.out.print("\nMenu");
+            System.out.println(" \n 1. Animales registrados");
+            System.out.println(" 2. Agregar animal nuevo");
+            System.out.println(" 3. Trasladar un animal");
+            System.out.println(" 4. Salir");
+            opc=CapturaEntrada.capturarCaracter("Seleccione una opcion");
+			System.out.println();
+			
+            switch(opc){
+				case '1':
+							for(int i=0; i<=tamanio; i++){
+							animal[i].Edad();
+                            animal[i].Comida();
+                            animal[i].Sonido();
+							animal[i].gusto();
+                            System.out.println();
+							}
+				break;
+
+                case '2': 
+                          String nombre=CapturaEntrada.capturarCadena("Ingrese el nombre");
+                          int edad=CapturaEntrada.capturarEntero("Ingrese la edad");
+                          String comida=CapturaEntrada.capturarCadena("Ingrese lo que come");
+                          String sonido=CapturaEntrada.capturarCadena("Ingrese el sonido que hace");
+						  String gusto=CapturaEntrada.capturarCadena("Ingrese que le gusta hacer");
+						  System.out.println();
+                          tamanio++;
+                          animal[tamanio] = new Animal(nombre, edad, comida, sonido, gusto);
+				break;
+
+                case '3': 
+						  nom=CapturaEntrada.capturarCadena("Que animal desea trasladar(borrar)?");
+                          for(int i=0; i<=tamanio; i++){
+							  if(animal[i].getNombre().equalsIgnoreCase(nom)){
+								  animal[i] = animal[i+1];
+                                  tamanio--;
+                                  aux = 1;
+                                        
+                              }
+							  else{
+								  aux = 0;
+								}
+
+                          }
+						  
+						  if(aux == 1){
+							  System.out.println("Traslado exitoso!!");
+							  System.out.println();
+                          }
+						  else{
+							  System.out.println("Traslado fallido, nombre no encontrado");
+							  System.out.println();
+                          }
+				break;
+
+                case '4': 
+					System.exit(0);
+				
+				break;           
+                    
+				default:
+				System.out.println("\n--Seleccione un opcion valida--");
+				System.out.println();
+            }
+
+                opc=CapturaEntrada.capturarCaracter("Desea seguir mirando a los animales del zoo? (Si/No)");
+                        
+
+        }
+		while(opc == 's' || opc == 'S');  
+			System.out.println("\nGracias por su visita al zoologico!!");
+    }
+}
+
+abstract class Veterinaria{
+    protected String nombre;
+    protected int edad;
+	
+    public Veterinaria(String nombre, int edad){
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public abstract void Edad();
+    public abstract void Comida();
+    public abstract void Sonido();
+	public abstract void gusto();
+	
+
+    public String getNombre(){
+		return nombre;
+	}
+}
+
+class Animal extends Veterinaria{
+    String comida;
+    String sonido;
+	String gusto;
+
+    public Animal(String nombre, int edad, String comida, String sonido, String gusto){
+        super(nombre, edad);
+        this.comida = comida;
+        this.sonido = sonido;
+		this.gusto = gusto;
+    }
+
+    @Override
+    public void Edad(){
+        System.out.println(nombre + " tiene " + edad + " de edad.");
+    }
+
+    @Override
+    public void Comida(){
+        System.out.println(nombre + " come " + comida);
+    }
+    @Override
+    public void Sonido(){
+        System.out.println("El sonido de " + nombre + " es: " + sonido + ".");
+    }
+	
+	@Override
+	public void gusto(){
+		System.out.println(nombre + " le gusta mucho " + gusto);
+	}
+}
+
+class Leon extends Veterinaria{
+
+    public Leon(String nombre, int edad){
+        super(nombre, edad);
+    }
+	
+    @Override
+    public void Edad(){
+        System.out.println(nombre+" tiene "+edad+" anios de edad.");
+    }
+
+    @Override
+    public void Comida(){
+        System.out.println(nombre+" come filetes.");
+    }
+	
+    @Override
+    public void Sonido(){
+        System.out.println(nombre+" grunie: arg! arg!");
+    }
+	
+	@Override
+	public void gusto(){
+		System.out.println(nombre + " le gusta dormir boca arriba.");
+	}
+	
+}
+
+class Elefante extends Veterinaria{
+    public Elefante(String nombre, int edad){
+        super(nombre, edad);
+    }
+	
+    @Override
+    public void Edad(){
+        System.out.println(nombre+" tiene "+edad+" de edad.");
+    }
+
+    @Override
+    public void Comida(){
+        System.out.println(nombre+" come mani.");
+    }
+	
+    @Override
+    public void Sonido(){
+        System.out.println(nombre+" hace: prraaaaaaahh!!");
+    }
+	
+	public void gusto(){
+		System.out.println(nombre + " le gusta lanzar agua con su trompa.");
+	}
+}
+
+class CapturaEntrada{
+
+    public static int capturarEntero(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextInt());
+    }
+
+    public static float capturarFlotante(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextFloat());
+    }
+
+    public static double capturarDoble(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextDouble());
+    }
+
+    public static String capturarCadena(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.nextLine());
+    }
+	
+	public static char capturarCaracter(String msg){
+		Scanner sc = new Scanner(System.in);
+        System.out.print(""+msg+": ");
+        return (sc.next().charAt(0));
+	}
+}
