@@ -1,0 +1,582 @@
+package proyect;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
+class variables extends JFrame{
+    public static int i=1;
+    public static double vida1=100;   
+    public static double res=0;
+    public static String usuario="";
+    public static int puntos=0;
+}
+
+public class proyecto extends variables{
+    
+      public proyecto (){
+        setSize(1000,700);
+        setTitle("Juego");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+    public static void main(String[] args) {
+            proyecto juego = new proyecto();
+            juego.iniciarComponentesUsuario(juego);
+            juego.setVisible(true);
+    }
+    public void aumentarReto(){ 
+        i=i+1;  
+    }
+    public void quitarVida(){
+        vida1=vida1 - 12.5;
+    }
+    
+    public Object panelU;
+ 
+    public void iniciarComponentesUsuario(JFrame juego){
+        proyecto juego1 = new proyecto();
+        
+        JPanel panelU = new JPanel();
+        panelU.setBackground(Color.DARK_GRAY);
+        panelU.setLayout(null);
+        this.getContentPane().add(panelU);
+        
+        JLabel etiquetaU = new JLabel("INGRESE SU NOMBRE:",SwingConstants.CENTER);
+        etiquetaU.setBounds(240, 220, 500, 50);
+        etiquetaU.setForeground(Color.white);
+        etiquetaU.setHorizontalAlignment(SwingConstants.CENTER);
+        etiquetaU.setFont(new Font("Comic Sans MS",Font.BOLD,30));
+        panelU.add(etiquetaU);    
+    
+        JTextField cajaTexto = new JTextField();
+        cajaTexto.setBounds(340, 290, 300, 35);
+        panelU.add(cajaTexto);
+        cajaTexto.addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+               if(Character.isDigit(e.getKeyChar())){
+                     e.consume();
+               }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+            
+        });
+        
+        JButton boton1 = new JButton();
+        boton1.setBounds(390, 350, 200, 70);
+        boton1.setText("Entrar");
+        boton1.setFont(new Font("Comic Sans MS",3,30));
+        panelU.add(boton1);
+        
+        ImageIcon imagen = new ImageIcon("imag.jpg");
+        JLabel etiquetaU2 = new JLabel(new ImageIcon("imag.jpg"));
+        etiquetaU2.setBounds(0, 0, 1000, 700);
+        etiquetaU2.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH)));
+        panelU.add(etiquetaU2);
+        
+        ActionListener Entrar;
+        Entrar = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usuario=cajaTexto.getText();
+                juego1.iniciarComponentesMenu(juego1);
+                juego1.setVisible(true);
+                juego.setVisible(false);           
+            }
+        };
+        boton1.addActionListener(Entrar);   
+    }
+
+    public Object panel;
+    
+    public void iniciarComponentesMenu(JFrame juego1){
+     proyecto juego2 = new proyecto();
+     proyecto juego3 = new proyecto();
+     
+     JPanel panel= new JPanel();
+     panel.setBackground(Color.DARK_GRAY);
+     panel.setLayout(null);
+     this.getContentPane().add(panel);
+     
+     JLabel etiqueta = new JLabel("MATE-RETO",SwingConstants.CENTER);
+     etiqueta.setBounds(240, 20, 500, 50);
+     etiqueta.setForeground(Color.white);
+     etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta.setFont(new Font("Comic Sans MS",3,50));
+     panel.add(etiqueta);
+     
+     JButton boton1 = new JButton();
+     boton1.setBounds(400, 200, 150, 50);
+     boton1.setText("Jugar");
+     boton1.setFont(new Font("Comic Sans MS",3,30));
+     panel.add(boton1);
+     
+     JButton boton2 = new JButton();
+     boton2.setBounds(330, 300, 300, 50);
+     boton2.setText("Instrucciones");
+     boton2.setFont(new Font("Comic Sans MS",3,30));
+     panel.add(boton2);
+     
+     JButton boton3 = new JButton();
+     boton3.setBounds(400, 400, 150, 50);
+     boton3.setText("Salir");
+     boton3.setFont(new Font("Comic Sans MS",3,30));
+     panel.add(boton3);
+     
+     ImageIcon imagen = new ImageIcon("imag.jpg");
+     JLabel etiqueta2 = new JLabel(new ImageIcon("imag.jpg"));
+     etiqueta2.setBounds(0, 0, 1000, 700);
+     etiqueta2.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH)));
+     panel.add(etiqueta2);
+     
+     ActionListener Instrucciones = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                juego2.iniciarComponentesInstrucciones(juego2);
+                juego2.setVisible(true);
+                juego1.setVisible(false);
+            }
+        };
+        boton2.addActionListener(Instrucciones);
+        
+     ActionListener Jugar = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                juego3.iniciarComponentesJuego(juego3);
+                juego3.setVisible(true);
+                juego1.setVisible(false);
+            }
+        };
+        boton1.addActionListener(Jugar);
+        
+     ActionListener salir = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        };
+        boton3.addActionListener(salir);
+    }  
+
+    public Object panelI;
+    
+    public void iniciarComponentesInstrucciones(JFrame juego2){
+     JPanel panelI= new JPanel();
+     panelI.setBackground(Color.DARK_GRAY);
+     panelI.setLayout(null);
+     this.getContentPane().add(panelI);
+     
+     JLabel etiqueta3 = new JLabel("INSTRUCCIONES",SwingConstants.CENTER);
+     etiqueta3.setBounds(50, 20, 500, 50);
+     etiqueta3.setForeground(Color.white);
+     etiqueta3.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta3.setFont(new Font("Comic Sans MS",3,40));
+     panelI.add(etiqueta3);
+     
+     JLabel etiqueta4 = new JLabel("1.- Una vez iniciado el juego, se mostrara el",SwingConstants.CENTER);
+     etiqueta4.setBounds(10, 100, 450, 50);
+     etiqueta4.setForeground(Color.white);
+     etiqueta4.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta4.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta4);
+     
+     JLabel etiqueta5 = new JLabel("primer reto que deberas resolver",SwingConstants.CENTER);
+     etiqueta5.setBounds(10, 130, 350, 50);
+     etiqueta5.setForeground(Color.white);
+     etiqueta5.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta5.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta5);
+     
+     JLabel etiqueta7 = new JLabel("2.- Para contestar el reto tendras que escribir",SwingConstants.CENTER);
+     etiqueta7.setBounds(10, 200, 470, 50);
+     etiqueta7.setForeground(Color.white);
+     etiqueta7.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta7.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta7);
+     
+     JLabel etiqueta6 = new JLabel("la respuesta y despues pulsar el boton de enviar",SwingConstants.CENTER);
+     etiqueta6.setBounds(10, 230, 490, 50);
+     etiqueta6.setForeground(Color.white);
+     etiqueta6.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta6.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta6);
+     
+     JLabel etiqueta8 = new JLabel("3.- Despues de contestar, si fue de manera correcta",SwingConstants.CENTER);
+     etiqueta8.setBounds(10, 300, 530, 50);
+     etiqueta8.setForeground(Color.white);
+     etiqueta8.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta8.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta8);
+     
+     JLabel etiqueta9 = new JLabel("se restara vida al dragon, de lo contrario la vida seguira igual",SwingConstants.CENTER);
+     etiqueta9.setBounds(10, 330, 620, 50);
+     etiqueta9.setForeground(Color.white);
+     etiqueta9.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta9.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta9);
+     
+     JLabel etiqueta10 = new JLabel("4.- Si se manda la respuesta vacia, se tomara como incorrecta",SwingConstants.CENTER);
+     etiqueta10.setBounds(10, 400, 630, 50);
+     etiqueta10.setForeground(Color.white);
+     etiqueta10.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta10.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta10);
+     
+     JLabel etiqueta11 = new JLabel("5.- Tendras que contestar 8/12 retos correctos para ganar",SwingConstants.CENTER);
+     etiqueta11.setBounds(10, 470, 600, 50);
+     etiqueta11.setForeground(Color.white);
+     etiqueta11.setHorizontalAlignment(SwingConstants.CENTER);
+     etiqueta11.setFont(new Font("Comic Sans MS",3,20));
+     panelI.add(etiqueta11);
+     
+     ImageIcon imagen = new ImageIcon("Inst.jpg");
+     JLabel etiqueta = new JLabel(new ImageIcon("Inst.jpg"));
+     etiqueta.setBounds(0, 0, 1000, 700);
+     etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH)));
+     panelI.add(etiqueta);
+     
+     JButton boton = new JButton();
+     boton.setBounds(400, 600, 150, 50);
+     boton.setText("atras");
+     boton.setFont(new Font("Comic Sans MS",3,30));
+     panelI.add(boton);
+     
+     ActionListener atras = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                proyecto juego3 = new proyecto();
+                juego3.iniciarComponentesMenu(juego3);
+                juego3.setVisible(true);
+                juego2.setVisible(false);
+            }
+        };
+        boton.addActionListener(atras);
+     
+    }
+        public void iniciarComponentesJuego(JFrame juego3){
+         
+         proyecto juego4 = new proyecto();
+         Random rand = new Random();  
+         int uno;
+         int dos;
+         int tres;
+         int cuatro;
+         int exp;
+         int op;
+         String signo = null;
+         String vida;
+         int resUs = 0;
+         String resU = "";
+         
+         
+         uno = rand.nextInt(200-100+1)+100;
+         dos = rand.nextInt(50-10+1)+10;
+         tres = rand.nextInt(50)+1;
+         cuatro = rand.nextInt(10)+1;
+         exp = rand.nextInt(2)+2;
+         op = rand.nextInt(4);
+         
+         if(op==0)
+         {
+             res= uno + dos + tres;
+             signo ="+";
+         }
+         if(op==1)
+         {
+             res= uno - dos - tres;
+             signo = "-";
+         }
+         if(op==2)
+         {
+             res= uno * dos * tres;
+             signo = "X";
+         } 
+         if(op==3)
+         {
+             res= uno + ((int) Math.pow(cuatro,exp)) - tres;
+             signo = "^";
+         }
+         
+         vida=String.valueOf(vida1);
+         
+         JPanel panelJ= new JPanel();
+         panelJ.setBackground(Color.DARK_GRAY);
+         panelJ.setLayout(null);
+         this.getContentPane().add(panelJ);
+ 
+         JTextField cajaTexto = new JTextField();
+         cajaTexto.setBounds(430, 590, 150, 35);
+         cajaTexto.setText("");
+         cajaTexto.addKeyListener(new KeyListener(){
+             @Override
+             public void keyTyped(KeyEvent e) {
+                 if(!Character.isDigit(e.getKeyChar())){
+                     e.consume();
+                 }
+             }
+
+             @Override
+             public void keyPressed(KeyEvent e) {
+                 
+             }
+             @Override
+             public void keyReleased(KeyEvent e) {
+                 
+             }
+             
+         });
+         panelJ.add(cajaTexto);
+         
+         JButton boton = new JButton();
+         boton.setBounds(620, 585, 150, 50);
+         boton.setText("enviar");
+         boton.setFont(new Font("Comic Sans MS",3,30));
+         panelJ.add(boton);
+         
+         JLabel etiqueta5 = new JLabel("RESPUESTA:",SwingConstants.CENTER);
+         etiqueta5.setBounds(210, 585, 250, 40);
+         etiqueta5.setForeground(Color.black);
+         etiqueta5.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta5.setFont(new Font("Comic Sans MS",3,30));
+         panelJ.add(etiqueta5);
+         
+         JLabel etiqueta3 = new JLabel("VIDA:"+vida+"%",SwingConstants.CENTER);
+         etiqueta3.setBounds(330, 0, 300, 50);
+         etiqueta3.setForeground(Color.red);
+         etiqueta3.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta3.setFont(new Font("Comic Sans MS",3,40));
+         panelJ.add(etiqueta3);
+         
+         if(op==3)
+         {
+         JLabel etiqueta6 = new JLabel("RETO "+i+": "+ uno + "+" + cuatro + signo + exp + "-" + tres,SwingConstants.CENTER);
+         etiqueta6.setBounds(190, 430, 600, 150);
+         etiqueta6.setForeground(Color.black);
+         etiqueta6.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta6.setFont(new Font("Comic Sans MS",3,30));
+         panelJ.add(etiqueta6);
+         }
+         else{
+         JLabel etiqueta4 = new JLabel("RETO "+i+": "+ uno + signo + dos + signo + tres,SwingConstants.CENTER);
+         etiqueta4.setBounds(190, 430, 600, 150);
+         etiqueta4.setForeground(Color.black);
+         etiqueta4.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta4.setFont(new Font("Comic Sans MS",3,30));
+         panelJ.add(etiqueta4);
+         }
+         ImageIcon imagen2 = new ImageIcon("dragon.jpg");
+         JLabel etiqueta2 = new JLabel(new ImageIcon("dragon.jpg"));
+         etiqueta2.setBounds(270, 50, 400, 400);
+         etiqueta2.setIcon(new ImageIcon(imagen2.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH)));
+         panelJ.add(etiqueta2);
+     
+         ImageIcon imagen = new ImageIcon("juego.jpg");
+         JLabel etiqueta = new JLabel(new ImageIcon("juego.jpg"));
+         etiqueta.setBounds(0, 0, 1000, 700);
+         etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(1000, 700, Image.SCALE_SMOOTH)));
+         panelJ.add(etiqueta);
+         
+         ActionListener enviar = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                aumentarReto();
+                String resU;
+                int resu;
+                resU=cajaTexto.getText();
+                if(resU.equals(""))
+                    resu=0;
+                else
+                    resu=Integer.parseInt(resU);
+                double resul=resu;
+                if(res==resul){
+                    puntos=puntos+20;
+                    quitarVida();
+                }
+                else{
+                    if(puntos>0)
+                    puntos=puntos-10;
+                }
+                
+                if(i<13 && vida1>0)
+                {
+                    juego4.iniciarComponentesJuego(juego4);
+                    juego4.setVisible(true);
+                    juego3.setVisible(false);
+                }
+                else
+                {
+                    if(i==13 && vida1>0)
+                    {
+                        juego4.perdedor(juego4);
+                        juego4.setVisible(true);
+                        juego3.setVisible(false);
+                    }
+                    else{
+                        juego4.ganador(juego4);
+                        juego4.setVisible(true);
+                        juego3.setVisible(false);
+                    }
+                }
+            }
+        };
+        boton.addActionListener(enviar);
+         
+     }
+      public void ganador(JFrame juego4){
+         proyecto juego5 = new proyecto();
+         JPanel panelG= new JPanel();
+         panelG.setBackground(Color.BLACK);
+         panelG.setLayout(null);
+         this.getContentPane().add(panelG);
+         
+         ImageIcon imagen = new ImageIcon("dragond.jpg");
+         JLabel etiqueta = new JLabel(new ImageIcon("dragond.jpg"));
+         etiqueta.setBounds(290, 0, 400, 300);
+         etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
+         panelG.add(etiqueta);
+         
+         JLabel etiqueta1 = new JLabel("Puntaje:"+ puntos,SwingConstants.CENTER);
+         etiqueta1.setBounds(190, 440, 600, 60);
+         etiqueta1.setForeground(Color.white);
+         etiqueta1.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta1.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(etiqueta1);
+         
+         JLabel etiqueta3 = new JLabel("¡El dragon a muerto!",SwingConstants.CENTER);
+         etiqueta3.setBounds(190, 400, 600, 60);
+         etiqueta3.setForeground(Color.white);
+         etiqueta3.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta3.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(etiqueta3);
+         
+         JLabel etiqueta2 = new JLabel("¡Has ganado "+ usuario + "!",SwingConstants.CENTER);
+         etiqueta2.setBounds(190, 360, 600, 60);
+         etiqueta2.setForeground(Color.white);
+         etiqueta2.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta2.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(etiqueta2);
+         
+         JButton boton = new JButton();
+         boton.setBounds(560, 520, 150, 50);
+         boton.setText("Salir");
+         boton.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(boton);
+         
+         JButton boton2 = new JButton();
+         boton2.setBounds(300, 520, 150, 50);
+         boton2.setText("Menu");
+         boton2.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(boton2);
+         
+         ActionListener Salir = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+            };
+            boton.addActionListener(Salir);
+         ActionListener Menu = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                i=1;
+                vida1=100;
+                res=0;
+                puntos=0;
+                juego5.iniciarComponentesMenu(juego5);
+                juego5.setVisible(true);
+                juego4.setVisible(false);
+            }
+            };
+            boton2.addActionListener(Menu);
+     }
+      public void perdedor(JFrame juego4){
+         proyecto juego6 = new proyecto();
+         JPanel panelG= new JPanel();
+         panelG.setBackground(Color.BLACK);
+         panelG.setLayout(null);
+         this.getContentPane().add(panelG);
+         
+         ImageIcon imagen = new ImageIcon("dragon.jpg");
+         JLabel etiqueta = new JLabel(new ImageIcon("dragon.jpg"));
+         etiqueta.setBounds(290, 0, 400, 300);
+         etiqueta.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
+         panelG.add(etiqueta);
+         
+         JLabel etiqueta1 = new JLabel("Puntos:"+ puntos,SwingConstants.CENTER);
+         etiqueta1.setBounds(190, 440, 600, 60);
+         etiqueta1.setForeground(Color.white);
+         etiqueta1.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta1.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(etiqueta1);
+         
+         JLabel etiqueta3 = new JLabel("¡El dragon sigue vivo!",SwingConstants.CENTER);
+         etiqueta3.setBounds(190, 300, 600, 60);
+         etiqueta3.setForeground(Color.white);
+         etiqueta3.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta3.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(etiqueta3);
+         
+         JLabel etiqueta2 = new JLabel("¡Has perdido "+ usuario + "!",SwingConstants.CENTER);
+         etiqueta2.setBounds(190, 360, 600, 60);
+         etiqueta2.setForeground(Color.white);
+         etiqueta2.setHorizontalAlignment(SwingConstants.CENTER);
+         etiqueta2.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(etiqueta2);
+         
+         JButton boton = new JButton();
+         boton.setBounds(560, 520, 150, 50);
+         boton.setText("Salir");
+         boton.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(boton);
+         
+         JButton boton2 = new JButton();
+         boton2.setBounds(300, 520, 150, 50);
+         boton2.setText("Menu");
+         boton2.setFont(new Font("Comic Sans MS",3,30));
+         panelG.add(boton2);
+         
+         ActionListener Salir = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+            };
+            boton.addActionListener(Salir);
+         ActionListener Menu = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                i=1;
+                vida1=100;
+                res=0;
+                puntos=0;
+                juego6.iniciarComponentesMenu(juego6);
+                juego6.setVisible(true);
+                juego4.setVisible(false);
+            }
+            };
+            boton2.addActionListener(Menu);
+     }
+}
