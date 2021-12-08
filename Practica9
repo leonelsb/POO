@@ -1,0 +1,201 @@
+import java.io.*;
+import java.util.*;
+
+public class prac9{
+	public static void main(String[] args){
+		LeeArchivoTexto archivo = new LeeArchivoTexto();
+		Alumno alumno1 = new Alumno("Leonel", 1268999);
+		Alumno alumno2 = new Alumno("Marcos", 1242314);
+		Alumno alumno3 = new Alumno("Brayan", 1265849);
+
+		int[] todasLasCalificaciones = new int [21];
+		
+		int[] calificaciones1 = new int[7];
+		int[] calificaciones2 = new int[7];
+		int[] calificaciones3 = new int[7];
+		
+		File f = null;
+		FileWriter file = null;
+		BufferedWriter bw = null;
+		PrintWriter pw = null;
+		archivo.leeArchivo();
+		todasLasCalificaciones = archivo.getCalificaciones();
+		
+		for(int i = 0; i < 7; i++){
+			calificaciones1[i] = todasLasCalificaciones[i];
+			
+		}
+		for(int i = 7, j = 0; j < 7; i++,j++){
+			calificaciones2[j] = todasLasCalificaciones[i];
+		}
+		for(int i = 14, j = 0; j < 7; i++,j++){
+			calificaciones3[j] = todasLasCalificaciones[i];
+		}
+		
+		
+		alumno1.setCalificaciones(calificaciones1);
+		alumno2.setCalificaciones(calificaciones2);
+		alumno3.setCalificaciones(calificaciones3);
+		
+		try{
+			f = new File("Calificaciones.txt");
+			file = new FileWriter(f);
+			bw = new BufferedWriter(file);
+			pw = new PrintWriter(bw);
+			
+			pw.println("Nombre: " + alumno1.getNombre());
+			System.out.println("Nombre: " + alumno1.getNombre());
+			pw.println("\nMatricula: " + alumno1.getMatricula());
+			System.out.println("Matricula: " + alumno1.getMatricula());
+			pw.write("\n");
+			for(int i = 0; i < 7; i++){
+				pw.println("Calificacion " + (i+1) + ": " + calificaciones1[i]);
+				System.out.println("Calificacion " + (i+1) + ": " + calificaciones1[i]);
+			}
+			pw.println("Promedio: " + alumno1.setPromedio());
+			System.out.println("Promedio: " + alumno1.setPromedio());
+			pw.println("__________________________________\n\n");
+			System.out.println("__________________________________\n\n");
+		
+			pw.println("Nombre: " + alumno2.getNombre());
+			System.out.println("Nombre: " + alumno2.getNombre());
+			pw.println("\nMatricula: " + alumno2.getMatricula());
+			System.out.println("Nombre: " + alumno2.getNombre());
+			pw.write("\n");
+			for(int i = 0; i < 7; i++){
+				pw.println("Calificacion " + (i+1) + ": " + calificaciones2[i]);
+				System.out.println("Calificacion " + (i+1) + ": " + calificaciones2[i]);
+			}
+			pw.println("Promedio: " + alumno2.setPromedio());
+			System.out.println("Promedio: " + alumno2.setPromedio());
+			pw.println("__________________________________\n\n");
+			System.out.println("__________________________________\n\n");
+			
+			pw.println("Nombre: " + alumno3.getNombre());
+			System.out.println("Nombre: " + alumno3.getNombre());
+			pw.println("\nMatricula: " + alumno3.getMatricula());
+			System.out.println("\nMatricula: " + alumno3.getMatricula());
+			pw.write("\n");
+			for(int i = 0; i < 7; i++){
+				pw.println("Calificacion " + (i+1) + ": " + calificaciones3[i]);
+				System.out.println("Calificacion " + (i+1) + ": " + calificaciones3[i]);
+			}
+			pw.println("Promedio: " + alumno3.setPromedio());
+			System.out.println("Promedio: " + alumno3.setPromedio());
+			pw.println("__________________________________\n\n");
+			System.out.println("__________________________________\n\n");
+			
+		}
+		catch(IOException e){
+			System.out.println("Error");
+		}
+		finally{
+			try{
+				if(null != file){
+					pw.close();
+					bw.close();
+					System.out.println("\n\nSe genero registro de alumnos.\n\n");
+				}	
+			}catch(Exception e2){
+				e2.printStackTrace();
+			}
+		}
+	}
+}
+
+class Alumno {
+    String nombre;
+    int matricula;
+    int[] calificaciones = new int[7];
+    double promedio = 0;
+    
+    public Alumno(String nombre, int matricula) {
+        this.nombre = nombre;
+        this.matricula = matricula;
+    }
+    
+    public void setCalificaciones(int[] arreglo){
+        
+		for (int i = 0; i < 7; i++){
+			calificaciones[i] = arreglo[i]; 
+		}
+    }
+	
+	public int[] getCalificaciones(){
+		return calificaciones;
+	}
+	
+	public void imprimeCalificaciones(){
+		for (int i = 0; i < 7; i++){
+				System.out.println("calificacion " + (i+1) + ": " + calificaciones[i]);
+				
+		}
+	}
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public int getMatricula() {
+        return matricula;
+    }
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public double getPromedio() {
+        return promedio;
+    }
+
+    public double setPromedio() {
+        for (int i = 0; i < 7; i++){
+            
+            promedio = calificaciones[i] + promedio; 
+        }
+        return promedio/7;
+    }
+    
+}
+
+class LeeArchivoTexto{
+	int[] calificaciones = new int [21];
+	
+	public void leeArchivo(){
+		File archivo = null;
+		
+		
+		try{
+			
+			archivo = new File("practica9.csv");
+			
+			Scanner inputStream = new Scanner(archivo);
+			while (inputStream.hasNext()){
+				String data = inputStream.next();
+				
+				String[] values = data.split(",");
+				calificaciones[0]=67;
+				for (int i = 1; i < values.length; i++ ){
+					calificaciones[i] = Integer.parseInt(values[i]);
+				}
+			}
+		}
+		
+		catch(FileNotFoundException e){
+			System.out.println("Error");
+		}	
+
+		
+	}
+	
+	public void imprimeArreglo(){
+		for (int i = 0; i < calificaciones.length; i++ ){
+			System.out.println(calificaciones[i]);
+		}
+	}
+	
+	public int[] getCalificaciones(){
+		return calificaciones;
+	}
+}
